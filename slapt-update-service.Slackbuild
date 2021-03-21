@@ -40,6 +40,21 @@ find "${DESTDIR}" -print0 | xargs -0 file | grep -e "executable" -e "shared obje
 if [ -d "{DESTDIR}/usr/man" ]; then find "${DESTDIR}/usr/man" -type f -exec gzip {} \; ;fi
 if [ -d "{DESTDIR}/usr/share/man" ]; then find "${DESTDIR}/usr/share/man" -type f -exec gzip {} \; ;fi
 
+# Installing icons
+mkdir -p "$PKG"/usr/share/pixmaps
+cat pixmaps/slapt-update-notifier-update.png > "$PKG"/usr/share/pixmaps/slapt-update-notifier-update.png
+cat pixmaps/slapt-update-notifier-idle.png > "$PKG"/usr/share/pixmaps/slapt-update-notifier-idle.png
+for res in 16 22 24 32 36 48 64 72 96 128 160 192 256 512; do
+  mkdir -p "$PKG"/usr/share/icons/hicolor/${res}x${res}/apps
+  convert pixmaps/slapt-update-notifier-update.png -resize ${res}x${res} "$PKG"/usr/share/icons/hicolor/${res}x${res}/apps/slapt-update-notifier-update.png
+  convert pixmaps/slapt-update-notifier-idle.png -resize ${res}x${res} "$PKG"/usr/share/icons/hicolor/${res}x${res}/apps/slapt-update-notifier-idle.png
+done
+
+# For current Slackware
+mkdir -p "$PKG"/usr/share/dbus-1
+mv "$PKG"/etc/dbus-1/system.d "$PKG"/usr/share/dbus-1
+find "$PKG"/etc/dbus-1 -depth -type d -exec rm -rf "{}" \;
+
 mkdir -p "${DESTDIR}/install"
 cat slack-desc > "${DESTDIR}/install/slack-desc"
 cat slack-required > "${DESTDIR}/install/slack-required"
