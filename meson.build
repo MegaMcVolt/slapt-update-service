@@ -65,5 +65,5 @@ subdir('src')
 subdir('pixmaps')
 subdir('data')
 
-install_data(['AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL', 'NEWS', 'README'], install_dir: docdatadir)
+install_data(['AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL', 'NEWS', 'README.md'], install_dir: docdatadir)
 install_data('slapt-update-service.desktop', install_dir: join_paths(get_option('sysconfdir'), 'xdg', 'autostart'))
