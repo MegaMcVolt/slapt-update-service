@@ -31,8 +31,8 @@
 #define _(x) gettext(x)
 #define SUN_RUNNING_ICON PIXMAPS_DIR "/slapt-update-notifier-idle.png"
 #define SUN_UPDATE_ICON PIXMAPS_DIR "/slapt-update-notifier-update.png"
-#define SUN_TIMEOUT_RECHECK_SEC 360 // 1 hour
-#define SUN_TIMEOUT_DBUS_MSEC 300000 /* 1000*(1*5*60), 5 minutes */
+#define SUN_TIMEOUT_RECHECK_SEC 10860 // 3 houres + 1 minute
+#define SUN_TIMEOUT_DBUS_MSEC 10800000 /* 1000*(3*60*60), 3 houres */
 
 struct slapt_update_notifier {
     GtkStatusIcon *tray_icon;
